@@ -1,0 +1,30 @@
+{
+  "name": "tukang-sayur",
+  "version": "1.0.0",
+  "description": "vegetable e-commerce",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/immhrmwn/tukang-sayur.git"
+  },
+  "keywords": [],
+  "author": "Imam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/immhrmwn/tukang-sayur/issues"
+  },
+  "homepage": "https://github.com/immhrmwn/tukang-sayur#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "sequelize-cli": "^6.2.0"
+  }
+}
