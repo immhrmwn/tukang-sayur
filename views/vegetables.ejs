@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tukang Sayur</title>
+</head>
+<body>
+  <h1>List Sayur Ku</h1>
+  <div>
+    <table border="1px">
+      <thead>
+        <tr>
+          <th>Nama sayur</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for ( let i = 0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].name%></td>
+          <td></td>
+          <td><%= data[i].price%></td>
+          <td><%= data[i].stock%></td>
+          <td><img src="https://ecs7.tokopedia.net/img/cache/700/VqbcmM/2020/5/5/97b96e97-2886-443a-855d-2e02715f5197.jpg" alt="sayur" width="200px"></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
