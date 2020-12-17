@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 500px;
+      background-color: salmon;
+      padding: 10px;
+      margin: auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Restock Vegetable</h1><hr>
+    <a href="/vegetables/empty"><button>Cancel</button></a>
+    <h2><%= data.name %></h2>
+    <div>
+      <form action="/vegetables/restock/<%= data.id %>" method="POST">
+        <div>
+          <label for="stock">Stock</label><br>
+          <input type="number" name="stock" id="stock">
+        </div>
+        <input type="submit" value="Restock">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tukang Sayur</title>
+  <style>
+    .container {
+      margin: auto;
+      width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .header {
+      background-color: salmon;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .category {
+      width: 400px;
+      padding: 5px;
+      background-image: url('https://st3.depositphotos.com/6783566/13925/v/600/depositphotos_139257770-stock-illustration-vegetables-seamless-vector-pattern.jpg');
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    a .category {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <%- include ('partials/navbar') %>
+  <div class="container">
+    <div class="header">
+    <h1>Kategori</h1>
+    <h3>Tempatnya belanja sayur</h3>
+    </div>
+    <%for (let i = 0; i < data.length; i++) {%>
+    <a href=""><div class="category"><h3><%= data[i].nameTag %></h3></div></a>
+    <% } %>
+  </div>
+</body>
+</html>

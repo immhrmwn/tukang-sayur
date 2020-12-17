@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tukang Sayur</title>
+  <style>
+    .container {
+      width: 60%;
+      margin: auto;
+      margin-top: 50px;
+      padding: 20px;
+    }
+    .header {
+      background-color: salmon;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .table {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      background-color: salmon;
+    }
+    .table tr {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <%- include ('partials/navbar') %>
+  <div class="container">
+    <div class="header">
+    <h1>List Sayur Habis Stock</h1>
+    </div>
+    <h3><a href="/vegetables">Kembali Ke List Sayur</a></h3>
+    <% if(data.length !== 0) {%>
+      <div class="table">
+        <table cellspasing="3px" style="text-align: center;">
+          <thead>
+            <tr>
+              <th>Sayur</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for ( let i = 0; i < data.length; i++) { %>
+            <tr>
+              <td>
+                <% if(!data[i].image) {%>
+                  <img src="uploads/image-1608227418918.png" alt="sayur" width="200px"><br>
+                  <a href="/addimage/<%= data[i].id%>">add image</a>
+                <% } else { %>
+                  <img src="<%= (data[i].image).replace('public/', '') %>" alt="sayur" width="200px"><br>
+                  <a href="/addimage/<%= data[i].id%>">change image</a>
+                <% } %>
+                <br><%= data[i].name%>
+              </td>
+              <td>
+                <ul>
+                  <% for (let j=0; j < data[i].Tags.length; j++) { %>
+                  <li><%= data[i].Tags[j].nameTag %></li>
+                  <% } %>
+                </ul>
+              </td>
+              <td><%= formatCurrency(data[i].price) %></td>
+              <td><%= data[i].formatStock() %></td>
+              <td>
+                <a href="/vegetables/restock/<%= data[i].id%>"><button>Restock</button></a><br><hr>
+                <a href="/vegetables/delete/<%= data[i].id%>" onclick="return confirm('Are you sure want to Delete?');"><button>Delete</button></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    <%} else {%>
+      <h1>List Kosong</h1>
+    <% } %>
+  </div>
+</body>
+</html>

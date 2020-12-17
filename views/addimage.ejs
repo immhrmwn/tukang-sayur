@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 500px;
+      background-color: salmon;
+      padding: 10px;
+      margin: auto;
+      margin-top: 100px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <%- include ('partials/navbar') %>
+  <div class="container">
+    <h1>Image Upload</h1><hr>
+    <%= typeof msg != 'undefined' ? msg : ''%>
+    <a href="/vegetables"><button>Cancel</button></a><br><br>
+    <form action="/addimage/<%= data.id %>" method="POST" enctype="multipart/form-data">
+      <input name="image" type="file">
+      <br><br>
+      <div>
+        <input type="submit" value="submit">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
