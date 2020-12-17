@@ -256,7 +256,7 @@ class Controller {
       where: {id: id}
     })
     .then(data => {
-      res.redirect('/vegetables/empty')
+      res.redirect('/empty')
     })
     .catch(err => {
       const errMessages = []
