@@ -4,32 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tukang Sayur</title>
+  <style>
+    .container {
+      width: 60%;
+      margin: auto;
+      padding: 20px;
+      margin-top: 50px;
+    }
+    .header {
+      background-color: salmon;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    h3 {
+      display: inline-block;
+      padding: 2px;
+      margin-right: 10px;
+    }
+    .table {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      background-color: salmon;
+    }
+    .table tr {
+      background-color: white;
+    }
+  </style>
 </head>
 <body>
-  <h1>List Sayur Ku</h1>
-  <div>
-    <table border="1px">
-      <thead>
-        <tr>
-          <th>Nama sayur</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Stock</th>
-          <th>View</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for ( let i = 0; i < data.length; i++) { %>
-        <tr>
-          <td><%= data[i].name%></td>
-          <td></td>
-          <td><%= data[i].price%></td>
-          <td><%= data[i].stock%></td>
-          <td><img src="https://ecs7.tokopedia.net/img/cache/700/VqbcmM/2020/5/5/97b96e97-2886-443a-855d-2e02715f5197.jpg" alt="sayur" width="200px"></td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+  <%- include ('partials/navbar') %>
+  <div class="container">
+    <div class="header">
+      <h1>List Sayur Ku</h1>
+    </div>
+    <h3><a href="/vegetables/add">Add sayur</a></h3>
+    <h3><a href="/empty">List Empty</a></h3>
+    <div class="table">
+      <table cellspacing="3px" style="text-align: center;">
+        <thead>
+          <tr>
+            <th>Sayur</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for ( let i = 0; i < data.length; i++) { %>
+          <tr>
+            <td>
+              <% if(!data[i].image) {%>
+                <img src="uploads/image-1608227418918.png" alt="sayur" width="200px"><br>
+                <a href="/addimage/<%= data[i].id%>">add image</a>
+              <% } else { %>
+                <img src="<%= (data[i].image).replace('public/', '') %>" alt="sayur" width="200px"><br>
+                <a href="/addimage/<%= data[i].id%>">change image</a>
+              <% } %>
+              <br><%= data[i].name%>
+            </td>
+            <td>
+              <ul>
+                <% for (let j=0; j < data[i].Tags.length; j++) { %>
+                <li><%= data[i].Tags[j].nameTag %></li>
+                <% } %>
+              </ul>
+              <form action="/add/tag/<%= data[i].id%>" method="POST">
+                <select name="tag_id" id="Tag">
+                  <%for (let a = 0; a < dataTag.length; a++){%>
+                  <option value="<%= dataTag[a].id %>"><%= dataTag[a].nameTag %></option>
+                  <% } %>
+                </select>
+                <input type="submit" value="add tag">
+              </form>
+            </td>
+            <td><%= formatCurrency(data[i].price) %></td>
+            <td><%= data[i].formatStock()%></td>
+            <td><a href="/vegetables/buy/<%= data[i].id%>"><button>Buy</button></a></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </body>
 </html>

@@ -9,6 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    formatStock(){
+      if(this.stock === 1){
+        return this.stock + ' pc'
+      } else {
+        return this.stock + ' pcs'
+      }
+    }
+
     static associate(models) {
       // define association here
       Vegetable.belongsToMany(models.Tag, {
@@ -22,12 +30,49 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Vegetable.init({
-    name: DataTypes.STRING,
-    stock: DataTypes.INTEGER,
-    price: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: "nama tidak boleh kosong"
+        }
+      }
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          msg: "stock tidak boleh kosong"
+        },
+        isZero(value){
+          if(+value === 0){
+            throw new Error('masukan stock lebih dari 0')
+          }
+        }
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          msg: "price tidak boleh kosong"
+        },
+        isZero(value){
+          if(+value === 0){
+            throw new Error('masukan price lebih dari 0')
+          }
+        }
+      }
+    },
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Vegetable',
+    hooks: {
+      beforeCreate(instance, options){
+        instance.name += ' segar'
+      }
+    }
   });
   return Vegetable;
 };

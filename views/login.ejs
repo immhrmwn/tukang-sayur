@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 500px;
+      background-color: salmon;
+      padding: 10px;
+      margin: auto;
+      border-radius: 10px;
+      text-align: center;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+  <h1>Login</h1>
+  <hr>
+  <% if (errorMsg) { %>
+    <p style="color: red;"><%= errorMsg %></p>
+  <% } %>
+  <form action="/login" method="POST">
+    <div>
+      <label for="username">username:</label><br>
+      <input type="text" name="username" id="username">
+    </div>
+    <div>
+      <label for="password">Password:</label><br>
+      <input type="password" name="password" id="password">
+    </div>
+    <br><br>
+    <input type="submit" value="login">
+  </form>
+  <a href="/register"><p>Belum daftar? Klik untuk Daftar</p></a>
+  </div>
+</body>
+</html>
